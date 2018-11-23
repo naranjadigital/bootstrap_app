@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Listado</h1>
+    </div>
+    <div class="form-group">
+        <a class="btn btn-primary" href="{% url 'add-crud' %}" role="button">Agregar</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Foranea</th>
+                <th>Entero</th>
+                <th>Choice</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ c.codigo }}</td>
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.foranea }}</td>
+                    <td>{{ c.entero }}</td>
+                    <td>{{ c.get_choice_display }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'edit-crud' c.id %}" role="button">Edit</a>
+                        <a class="btn btn-danger" href="{% url 'delete-crud' c.id %}" role="button">Delete</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
